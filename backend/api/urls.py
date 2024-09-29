@@ -1,0 +1,31 @@
+from django.urls import path
+from .views import SignInView,SignUpView,VideoListCreateView, VideoDetailView,LikeCreateDeleteView,CommentCreateDeleteView,FavoriteCreateDeleteView,FollowCreateDeleteView,NotificationListView,TrendingVideosView,VideoCommentsView,UserVideosView,FollowingVideosView,VideoRetrieveView,UserListView,FriendListView,VideoLikeStatusView,UserSearchView,UserRetrieveView,FollowStatusView,UserFollowersListView,UserFollowingListView,ProfilePictureUpdateView,UpdateUsernameView,MarkAllNotificationsAsSeenView
+
+urlpatterns = [
+    path('login/',SignInView.as_view()),
+    path('register/',SignUpView.as_view()),
+    path('videos/', VideoListCreateView.as_view(), name='video-list-create'),
+    path('videos/<int:pk>/', VideoDetailView.as_view(), name='video-detail'),
+    path('like/<int:video_id>/', LikeCreateDeleteView.as_view(), name='like-video'),
+    path('comment/<int:video_id>/', CommentCreateDeleteView.as_view(), name='comment-video'),
+    path('comment/<int:comment_id>/delete/', CommentCreateDeleteView.as_view(), name='delete-comment'),
+    path('favorite/<int:video_id>/', FavoriteCreateDeleteView.as_view(), name='favorite-video'),
+    path('follow/<int:user_id>/', FollowCreateDeleteView.as_view(), name='follow-user'),
+    path('notifications/', NotificationListView.as_view(), name='notifications'),
+    path('videos/trending/', TrendingVideosView.as_view(), name='trending-videos'),
+    path('videos/<int:video_id>/comments/', VideoCommentsView.as_view(), name='video-comments'),
+    path('videos/user/<int:user_id>/', UserVideosView.as_view(), name='user-videos'),
+    path('videos/following/', FollowingVideosView.as_view(), name='following-videos'),
+    path('video/<int:id>/', VideoRetrieveView.as_view(), name='get_video_by_id'),
+    path('users/suggested/', UserListView.as_view(), name='suggested-users'),
+    path('users/friends/', FriendListView.as_view(), name='user-friends'),
+    path('like/<int:video_id>/status/', VideoLikeStatusView.as_view(), name='like-status'),
+    path('users/search/', UserSearchView.as_view(), name='user-search'),
+    path('user/<int:user_id>/', UserRetrieveView.as_view(), name='user-detail'),
+    path('follow/status/<int:user_id>/', FollowStatusView.as_view(), name='follow-status'),
+    path('users/<int:user_id>/followers/', UserFollowersListView.as_view(), name='user-followers'),
+    path('users/<int:user_id>/following/', UserFollowingListView.as_view(), name='user-following'),
+    path('profile-picture/', ProfilePictureUpdateView.as_view(), name='profile-picture-update'),
+    path('update-username/', UpdateUsernameView.as_view(), name='update-username'),
+    path('notifications/mark-all-seen/', MarkAllNotificationsAsSeenView.as_view(), name='mark_all_notifications_seen'),
+]
